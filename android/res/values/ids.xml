@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_id">1062124532738</string>
+    <string name="package_name">com.fastfoodskater.game</string>
+    <string name="achievement_welcome">CgkIgui43PQeEAIQAg</string>
+    <string name="achievement_over_120">CgkIgui43PQeEAIQAw</string>
+    <string name="achievement_over_200">CgkIgui43PQeEAIQBA</string>
+    <string name="achievement_better_then__me">CgkIgui43PQeEAIQBQ</string>
+    <string name="achievement_keeping_getting_better">CgkIgui43PQeEAIQBg</string>
+    <string name="achievement_dont_stop_me_now">CgkIgui43PQeEAIQBw</string>
+    <string name="achievement_best_of_all">CgkIgui43PQeEAIQCA</string>
+    <string name="achievement_burger_lover">CgkIgui43PQeEAIQCQ</string>
+    <string name="achievement_pizza_lover">CgkIgui43PQeEAIQCg</string>
+    <string name="achievement_get_in_shape">CgkIgui43PQeEAIQCw</string>
+    <string name="leaderboard_fast_food_leag">CgkIgui43PQeEAIQAQ</string>
+</resources>
