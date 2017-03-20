@@ -1,13 +1,11 @@
 package com.fastfoodskater.game;
-
 import android.app.Activity;
 import android.os.Bundle;
-
 import com.badlogic.gdx.Gdx;
 import com.google.android.gms.games.Games;
 import com.google.example.games.basegameutils.GameHelper;
-
 import java.util.ArrayList;
+
 public class PlayServiceHendler extends Activity implements PlayServices {
     private GameHelper gameHelper;
     private final static int requestCode = 1;
@@ -25,6 +23,7 @@ public class PlayServiceHendler extends Activity implements PlayServices {
         achievements.add("CgkIgui43PQeEAIQCQ");
         achievements.add("CgkIgui43PQeEAIQCg");
         achievements.add("CgkIgui43PQeEAIQCw");
+        achievements.add("CgkIgui43PQeEAIQDQ");
     }
 
     @Override
@@ -72,24 +71,35 @@ public class PlayServiceHendler extends Activity implements PlayServices {
     @Override
     public void unlockAchievement() {}
     public void achievementUnlociker(int id,int kind) {
-        if (gameHelper !=null){
-            if (gameHelper.isSignedIn()){
-                //unlock
-                if (kind == 1){
-                    Games.Achievements.unlock(gameHelper.getApiClient(),achievements.get(id));
-                }
-                //incremnt
-                else{
-                    Games.Achievements.increment(gameHelper.getApiClient(),achievements.get(id), 1);
+        try{
+            if (gameHelper !=null){
+                if (gameHelper.isSignedIn()){
+                    //unlock
+                    if (kind == 1){
+                        Games.Achievements.unlock(gameHelper.getApiClient(),achievements.get(id));
+                    }
+                    //incremnt
+                    else{
+                        Games.Achievements.increment(gameHelper.getApiClient(),achievements.get(id), 1);
+                    }
                 }
             }
         }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
     public void submitToliderBoard(int score) {
-        if (gameHelper != null){
-            if (gameHelper.isSignedIn()){
-                Games.Leaderboards.submitScore(gameHelper.getApiClient(),"CgkIgui43PQeEAIQAQ", score);
+        try {
+            if (gameHelper != null){
+                if (gameHelper.isSignedIn()){
+                    Games.Leaderboards.submitScore(gameHelper.getApiClient(),"CgkIgui43PQeEAIQDA", score);
+                }
             }
+        }
+        catch (Exception e){
+            e.printStackTrace();
         }
     }
 
@@ -113,7 +123,7 @@ public class PlayServiceHendler extends Activity implements PlayServices {
     }
 
     @Override
-    public void topscore() {
+    public void showtutorial() {
 
     }
 

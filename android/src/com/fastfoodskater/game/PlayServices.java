@@ -11,6 +11,6 @@ public interface PlayServices {
     public void showScore();
     public boolean isSignedIn();
     public void connectToService();
-    public void topscore();
-
+    public void showtutorial();
 }
+

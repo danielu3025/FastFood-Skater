@@ -63,7 +63,7 @@ public class GameHendler {
     float halfScreenHight;
 
     BottonImg sounBt,fxBt,aboutBt,startPlayBt,settingsButton,backButton,pauseButton,resumeButton,
-              retryBotton,quitButton,connect,achivment,liderboard,rate;
+              retryBotton,quitButton,connect,achivment,liderboard,rate,tutorial;
 
 
     public GameHendler(final GameHelper gh) {
@@ -135,7 +135,9 @@ public class GameHendler {
                 achivment = new BottonImg("img/achviment.png",screenWidth/1.11f,screenHight/1.2f,screenHight/7,screenHight/7);
                 liderboard = new BottonImg("img/liderboard.png",screenWidth/1.26f,screenHight/1.2f,screenHight/7,screenHight/7);
                 liderboard = new BottonImg("img/liderboard.png",screenWidth/1.26f,screenHight/1.2f,screenHight/7,screenHight/7);
-                rate = new BottonImg("img/rate.png",screenWidth/8f,screenHight/1.2f,screenHight/7,screenHight/7);
+                rate = new BottonImg("img/rate.png",screenWidth/9.5f,screenHight/1.2f,screenHight/7,screenHight/7);
+                tutorial = new BottonImg("img/tutorial.png",screenWidth/4.7f,screenHight/1.2f,screenHight/7,screenHight/7);
+
 
 
 
@@ -241,15 +243,15 @@ public class GameHendler {
         if (food.rectangle.getX()<screenWidth/4.5f){
             if (Intersector.overlaps(gameHendler.fatBoy.rectangle, gameHendler.food.rectangle)) {
                 if (food.sprite == food.food1 ){
-                    //Games.Achievements.increment(gameHelper.getApiClient(), "CgkIgui43PQeEAIQCQ", 1);
                     playServiceHendler.achievementUnlociker(7,2);
                 }
                 if (food.sprite == food.food2 ){
-                    //Games.Achievements.increment(gameHelper.getApiClient(), "CgkIgui43PQeEAIQCg", 1);
                     playServiceHendler.achievementUnlociker(8,2);
                 }
-                biteSound();
-                food.xPos = screenWidth + fatBoy.startingX + fatBoy.getWidth();
+                if (!gameOverAniem){
+                    biteSound();
+                }
+                food.xPos = screenWidth+screenWidth/2;
                 food.yPostion = food.randY();
                 food.spritPicker();
                 if (headPos >= screenWidth / 2 + screenWidth / 5.8f) {
@@ -350,11 +352,15 @@ public class GameHendler {
 
             gameHendler.getBatch().draw(trees, roadX, screenHight / 6, gameHendler.screenWidth, gameHendler.screenHight / 10);
             gameHendler.getBatch().draw(trees, roadX + gameHendler.screenWidth, screenHight / 6, gameHendler.screenWidth, gameHendler.screenHight / 10);
+            gameHendler.getBatch().draw(trees, roadX + gameHendler.screenWidth*2, screenHight / 6, gameHendler.screenWidth, gameHendler.screenHight / 10);
+
 
             gameHendler.getBatch().draw(road, roadX, 0, gameHendler.screenWidth, gameHendler.screenHight / 6);
             gameHendler.getBatch().draw(road, roadX + gameHendler.screenWidth, 0, gameHendler.screenWidth, gameHendler.screenHight / 6);
+            gameHendler.getBatch().draw(road, roadX + gameHendler.screenWidth*2, 0, gameHendler.screenWidth, gameHendler.screenHight / 6);
 
-            gameHendler.getBatch().draw(bar, screenWidth / 4f, gameHendler.screenHight - (gameHendler.screenHight * 1 / 5f), barLen, screenHight / 8);
+
+        gameHendler.getBatch().draw(bar, screenWidth / 4f, gameHendler.screenHight - (gameHendler.screenHight * 1 / 5f), barLen, screenHight / 8);
             gameHendler.getBatch().draw(head, headPos, gameHendler.screenHight - (gameHendler.screenHight * 1 / 5f), screenWidth / 13, screenHight / 10);
 
     }
@@ -369,6 +375,7 @@ public class GameHendler {
                 roadX = 0;
                 treesX = 0;
             }
+
 //        if (treesX == -(screenWidth)) {
 //            treesX = 0;
 //        }
@@ -455,6 +462,10 @@ public class GameHendler {
             playServiceHendler.achievementUnlociker(2,1);
 
         }
+        if (score > 200){
+            playServiceHendler.achievementUnlociker(6,1);
+        }
+
     }
 
     //manage the draw on the screen
@@ -478,8 +489,8 @@ public class GameHendler {
             }
             batch.draw(rate.texture,rate.x,rate.y,rate.widt,rate.hight);
             rateBt();
-
-
+            batch.draw(tutorial.texture,tutorial.x,tutorial.y,tutorial.widt,tutorial.hight);
+            tutorialBt();
             try {
                 int temp  =prefs.getInteger("hightScore");
                 if (temp>0){
@@ -588,7 +599,7 @@ public class GameHendler {
             backToSettings();
             batch.draw(backButton.texture,backButton.x,backButton.y,backButton.widt,backButton.hight);
         }
-        //tutorial
+        //tutorialImg
         else  if (gameState ==6){
             gameHendler.getBatch().draw(guide, 0, 0, gameHendler.screenWidth, gameHendler.screenHight);
             if (Gdx.input.justTouched()){
@@ -642,6 +653,7 @@ public class GameHendler {
     //start the game
     public void startPlayAction(){
         if (startPlayBt.checkIfClicked()){
+            playServiceHendler.achievementUnlociker(10,2);
             initGame();
             if (isFirst){
                 gameState = 6;
@@ -686,6 +698,7 @@ public class GameHendler {
             initGame();
             gameState = 1;
             record = 0;
+            playServiceHendler.achievementUnlociker(10,2);
         }
     }
     public  void resumeGame(){
@@ -735,6 +748,11 @@ public class GameHendler {
                 playServices.rateGame();
         }
     }
+    public void tutorialBt(){
+        if (tutorial.checkIfClicked()){
+            playServices.showtutorial();
+        }
+    }
 
     //save the highest score
     public void   saveScore( int s){
@@ -773,8 +791,8 @@ public class GameHendler {
 
     //play jump sound
     public void playJumpSound(){
-        if ((fatBoy.yPosition >10 && fatBoy.yPosition <14) && fatBoy.isLending == false && Integer.parseInt(fxIsOn) ==1){
-            musicGame.jumpSound.play();
+        if ((fatBoy.yPosition >0 && fatBoy.yPosition <30) && fatBoy.isLending == false && Integer.parseInt(fxIsOn) ==1){
+            musicGame.bendSound.play();
         }
     }
 

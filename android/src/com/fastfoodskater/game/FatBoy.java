@@ -20,7 +20,7 @@ public class FatBoy {
     float velocity = 50;
     float regularGravity = 25;
     float gravity= regularGravity;
-    float superGarvity = (float) (regularGravity+60000);
+    float superGarvity = (float) (regularGravity*3);
     int status =0;
     float width,hieght,dodgeW,dodgeH,jumpW,jumpH,runW,rectangleXpos;
     Animation<Texture> animation;
@@ -45,8 +45,8 @@ public class FatBoy {
             this.h = h;
         }
     }
-    SpriteSize[] sizes;
 
+    SpriteSize[] sizes;
     public FatBoy() {
         sprite = new Texture[4];
         fat = new Texture[4];
@@ -103,7 +103,6 @@ public class FatBoy {
         sizes[5] = new SpriteSize(width*1.8f,hieght/2.2f);
         //sizes[6] = new SpriteSize(width*2.61f,hieght/2.2f);
         temp =0;
-
 
     }
 

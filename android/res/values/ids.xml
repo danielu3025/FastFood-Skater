@@ -8,9 +8,10 @@
     <string name="achievement_better_then__me">CgkIgui43PQeEAIQBQ</string>
     <string name="achievement_keeping_getting_better">CgkIgui43PQeEAIQBg</string>
     <string name="achievement_dont_stop_me_now">CgkIgui43PQeEAIQBw</string>
-    <string name="achievement_best_of_all">CgkIgui43PQeEAIQCA</string>
+    <string name="achievement_over_400">CgkIgui43PQeEAIQCA</string>
     <string name="achievement_burger_lover">CgkIgui43PQeEAIQCQ</string>
     <string name="achievement_pizza_lover">CgkIgui43PQeEAIQCg</string>
     <string name="achievement_get_in_shape">CgkIgui43PQeEAIQCw</string>
-    <string name="leaderboard_fast_food_leag">CgkIgui43PQeEAIQAQ</string>
+    <string name="achievement_real_skater">CgkIgui43PQeEAIQDQ</string>
+    <string name="leaderboard_fastfood_liderboard">CgkIgui43PQeEAIQDA</string>
 </resources>

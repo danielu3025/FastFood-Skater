@@ -149,7 +149,11 @@ idea {
     }
 }
 dependencies {
-    compile 'com.android.support:multidex:1.0.0'
+    compile 'com.android.support:multidex:1.0.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
     compile 'com.android.support:support-v4:25.2.0'
+    compile 'com.google.android.gms:play-services-analytics:10.2.0'
+    compile 'com.android.support:support-annotations:25.2.0'
+    compile 'com.android.support:appcompat-v7:25.2.0'
 }
+apply plugin: 'com.google.gms.google-services'

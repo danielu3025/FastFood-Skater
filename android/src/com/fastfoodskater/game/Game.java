@@ -39,7 +39,6 @@ public class Game extends ApplicationAdapter {
 	public void dispose() {
 		gameHendler.batch.dispose();
 		gameHendler.font.dispose();
-
 	}
 }
 
