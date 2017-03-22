@@ -1,4 +1,3 @@
-game daniel yosef 203550215 + daniel luzgarten 304861412
 
 FAST FOOD
 
